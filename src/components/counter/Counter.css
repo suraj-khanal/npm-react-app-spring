@@ -35,3 +35,15 @@ const buttonStyle= {
     color: #005b96;
     font-size: 120px;
 }
+
+.counterButtonReset{
+    font-size: 26px;
+    background-color: #4b0000;
+    width: 100px;
+    margin: 15px;
+    color: white;
+    padding: 12px;
+    border-radius: 25px;
+    border-color: rgb(0, 0, 0);
+    border-width: 5px;
+}
