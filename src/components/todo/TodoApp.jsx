@@ -1,55 +1,41 @@
-import { useState } from 'react';
-import './TodoApp.css';
+import "./TodoApp.css";
+import LogoutComponent from "./LogoutComponent";
+import FooterComponent from "./FooterComponent";
+import HeaderComponent from "./HeaderComponent";
+import ErrorComponent from "./ErrorComponent";
+import ListTodosComponent from "./ListTodosComponent";
+import WelcomeComponent from "./WelcomeComponent";
+import LoginComponent from "./LoginComponent";
 
-export default function TodoApp(){
-    return (
-        <div className="TodoApp">
-            {/* Todo Management Application */}
-            <LoginComponent />
-            {/* <WelcomeComponent /> */}
-        </div>
-    )
+import { BrowserRouter, Route,Routes } from "react-router-dom";
+
+export default function TodoApp() {
+  return (
+    <div className="TodoApp">
+      {/* Todo Management Application */}
+
+      <BrowserRouter>
+        <HeaderComponent />
+        <Routes>
+          <Route path="/" element={<LoginComponent />} />
+          <Route path="/login" element={<LoginComponent />} />
+          <Route path="/welcome/:username" element={<WelcomeComponent />} />
+          <Route path="/todos" element={<ListTodosComponent />} />
+          <Route path="/logout" element={<LogoutComponent />} />
+
+          <Route path="*" element={<ErrorComponent />} />
+        </Routes>
+        <FooterComponent />
+      </BrowserRouter>
+    </div>
+  );
 }
 
-function LoginComponent(){
 
-    const [username, setUsername] = useState('suraj')
-    const [password, setPassword] = useState('')
 
-    function handleUsernameChange(event){
-        // console.log(event.target.value)
-        setUsername(event.target.value)
-    }
 
-    function handlePasswordChange(event){
-         console.log(event.target.value)
-        setPassword(event.target.value)
-    }
 
-    return (
-        <div className="Login">
-           <div className="LoginForm">
-            <div>
-                <label>Username</label>
-                <input type="text" name="username" value={username} onChange={handleUsernameChange}  />
-            </div>
 
-            <div>
-                <label>Password</label>
-                <input type="password" name="password" value={password} onChange={handlePasswordChange} />
-            </div>
-            <div>
-                <button type="button" name="login" >Login</button>
-            </div>
-           </div>
-        </div>
-    )
-}
 
-function WelcomeComponent(){
-    return (
-        <div className="Welcome">
-            Welcome Component
-        </div>
-    )
-}
+
+
