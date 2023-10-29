@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./security/AuthContext";
 
 export default function LoginComponent() {
     const [username, setUsername] = useState("suraj");
     const [password, setPassword] = useState("");
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [showErrorMessage, setShowErrorMessage] = useState(false);
   
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+
+    const authContext = useAuth()
   
     function handleUsernameChange(event) {
       // console.log(event.target.value)
@@ -20,39 +22,16 @@ export default function LoginComponent() {
     }
   
     function handleSubmit() {
-      if (username === "suraj" && password === "password") {
-        console.log("success");
-        setShowSuccessMessage(true);
-        setShowErrorMessage(false);
-        navigate(`/welcome/${username}`);
+      if (authContext.login(username, password)) {
+        navigate(`/welcome/${username}`)
       } else {
-        console.log("Failed");
-        setShowSuccessMessage(false);
-        setShowErrorMessage(true);
+        setShowErrorMessage(true)
       }
     }
-    // function SuccessMessageComponent(){
-    //     if (showSuccessMessage) {
-    //         return <div className="SuccessMessage">Authenticated Sucessfully</div>
-    //     }
-    //     return null
-    // }
-    // function ErrorMessageComponent(){
-    //     if (showErrorMessage) {
-    //         return <div className="errorMessage">Authentication Failed. Please Check your credentials</div>
-    //     }
-    //     return null
-    // }
-  
+
     return (
       <div className="Login">
         <h1>Time To Login! </h1>
-        {/* <SuccessMessageComponent /> */}
-        {showSuccessMessage && (
-          <div className="SuccessMessage">Authenticated Sucessfully</div>
-        )}
-  
-        {/* <ErrorMessageComponent /> */}
         {showErrorMessage && (
           <div className="errorMessage">
             Authentication Failed. Please Check your credentials
