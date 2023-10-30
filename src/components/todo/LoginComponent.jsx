@@ -59,7 +59,7 @@ export default function LoginComponent() {
             />
           </div>
           <div>
-            <button type="button" name="login" onClick={handleSubmit}>
+            <button type="button" className="btn btn-dark" name="login" onClick={handleSubmit}>
               Login
             </button>
           </div>
