@@ -50,6 +50,9 @@ function updateTodo(id){
   console.log('update clicked ' + id)
   navigate(`/todo/${id}`)
 }
+function addNewTodo(){
+  navigate(`/todo/-1`)
+}
 
 
   return (
@@ -77,13 +80,14 @@ function updateTodo(id){
                 <td> <button className="btn btn-warning"
                   onClick={() => deleteTodo(todo.id)} >Delete</button> </td>
 
-                <td> <button className="btn btn-success"
+                <td> <button className="btn btn-info"
                   onClick={() => updateTodo(todo.id)} >Update</button> </td>  
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <div className="btn btn-success m-4" onClick={addNewTodo} >Add New Todo</div>
     </div>
   );
 }
